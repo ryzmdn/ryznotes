@@ -14,10 +14,9 @@ import axios from "axios";
 import { Button } from "@/components/common/Button";
 import { Time } from "@/components/common/Time";
 import { Svg } from "@/components/common/Svg";
-import { formatDate } from "@/utils/fotmatDate";
-import { clss } from "@/utils/clss";
-import { convertEncode } from "@/utils/encode";
+import { cn, decodeHtmlEntities } from "@/lib/utils";
 import { Post } from "@/types/wordpress";
+import { formatDate } from "@/utils/fotmatDate";
 
 enum SearchStatus {
   Idle = "idle",
@@ -180,15 +179,15 @@ function SearchResult({
   const excerpt: string = post?.excerpt?.rendered || "";
   const excerptLength: string = excerpt.length > 100 ? "..." : "";
   const cleanTitle: string =
-    typeof title === "string" ? stripHtml(convertEncode(title)) : "";
+    typeof title === "string" ? stripHtml(decodeHtmlEntities(title)) : "";
   const cleanExcerpt: string =
     typeof excerpt === "string"
-      ? stripHtml(convertEncode(excerpt)).substring(0, 100) + excerptLength
+      ? stripHtml(decodeHtmlEntities(excerpt)).substring(0, 100) + excerptLength
       : "";
 
   return (
     <li
-      className={clss(
+      className={cn(
         "group block cursor-pointer px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-900/50",
         resultIndex > 0 ? "border-t border-gray-100 dark:border-gray-800" : ""
       )}
@@ -320,7 +319,7 @@ const SearchInput = forwardRef<
         name="search-blog"
         type="search"
         data-autofocus
-        className={clss(
+        className={cn(
           "flex-auto text-sm/6 appearance-none bg-transparent pl-10 text-gray-700 dark:text-gray-300 outline-none placeholder:text-gray-500 focus:w-full focus:flex-none",
           searchState.status === SearchStatus.Loading ? "pr-11" : "pr-4"
         )}
@@ -428,7 +427,7 @@ function SearchDialog({
   if (hasError) {
     return (
       <div
-        className={clss(
+        className={cn(
           open ? "block" : "hidden",
           "fixed inset-0 z-50",
           className
@@ -463,11 +462,7 @@ function SearchDialog({
 
   return (
     <div
-      className={clss(
-        open ? "block" : "hidden",
-        "fixed inset-0 z-50",
-        className
-      )}
+      className={cn(open ? "block" : "hidden", "fixed inset-0 z-50", className)}
     >
       <button
         className="fixed inset-0 z-40 size-full backdrop-blur-sm bg-gray-400/25 dark:bg-gray-950/40"
@@ -534,11 +529,7 @@ export function Search() {
 
   return (
     <>
-      <Button
-        variant="ghost"
-        rounded
-        {...buttonProps}
-      >
+      <Button variant="ghost" rounded {...buttonProps}>
         <Svg
           variant="outline"
           width={18}

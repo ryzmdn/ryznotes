@@ -1,7 +1,7 @@
 import picture from "@/assets/picture.webp";
 import Image from "next/image";
 
-export function CallToAction() {
+export function CallToActionSection() {
   return (
     <section className="relative isolate overflow-hidden bg-gray-50 dark:bg-gray-950 py-26">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-100),white)] dark:bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-900),black)] opacity-20" />
@@ -9,7 +9,7 @@ export function CallToAction() {
       <div className="mx-auto max-w-2xl lg:max-w-4xl">
         <figure className="w-full">
           <div className="relative size-24 mx-auto rounded-full overflow-hidden">
-            <Image fill src={picture} alt="me" />
+            <Image fill src={picture} alt="Rizky Ramadhan" />
           </div>
 
           <div className="mt-6 flex items-center justify-center space-x-3 text-base">
@@ -26,9 +26,10 @@ export function CallToAction() {
               <circle r={1} cx={1} cy={1} />
             </svg>
             <div className="text-gray-600 dark:text-gray-300">
-              Content Writer
+              Content Writer & Developer
             </div>
           </div>
+
           <figcaption className="mt-10">
             <blockquote className="text-center text-lg/8 font-semibold text-gray-800 dark:text-gray-200 sm:text-xl/8">
               <p>

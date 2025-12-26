@@ -2,15 +2,19 @@
 
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import Link from "next/link";
-import { clss } from "@/utils/clss";
+import { cn } from "@/lib/utils";
 
 const variantStyles = {
-  primary: "bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-gray-200 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:text-gray-100 disabled:bg-gray-300 dark:disabled:text-gray-700 dark:disabled:bg-gray-800",
-  secondary: "bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900 shadow-xs disabled:text-gray-400 disabled:bg-gray-200",
-  outline: "bg-gray-50 text-gray-800 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 shadow-xs disabled:text-gray-400 disabled:bg-gray-200 disabled:ring-gray-200",
-  ghost: "bg-transparent hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-800 dark:text-gray-200 disabled:text-gray-400 disabled:hover:bg-transparent",
+  primary:
+    "bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-gray-200 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:text-gray-100 disabled:bg-gray-300 dark:disabled:text-gray-700 dark:disabled:bg-gray-800",
+  secondary:
+    "bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900 shadow-xs disabled:text-gray-400 disabled:bg-gray-200",
+  outline:
+    "bg-gray-50 text-gray-800 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 shadow-xs disabled:text-gray-400 disabled:bg-gray-200 disabled:ring-gray-200",
+  ghost:
+    "bg-transparent hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-800 dark:text-gray-200 disabled:text-gray-400 disabled:hover:bg-transparent",
   link: "text-gray-800 dark:text-gray-200 hover:underline disabled:hover:no-underline disabled:text-gray-400",
-  default: ""
+  default: "",
 } as const;
 
 type ButtonProps = {
@@ -22,9 +26,9 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
 } & (
-  | (ComponentPropsWithoutRef<"button">)
-  | (ComponentPropsWithoutRef<typeof Link>)
-  | (ComponentPropsWithoutRef<"a">)
+  | ComponentPropsWithoutRef<"button">
+  | ComponentPropsWithoutRef<typeof Link>
+  | ComponentPropsWithoutRef<"a">
 );
 
 export function Button({
@@ -37,8 +41,8 @@ export function Button({
   className,
   ...props
 }: Readonly<ButtonProps>) {
-  const radius: string = rounded ? "rounded-full" : "rounded-sm"
-  const baseClassName = clss(
+  const radius: string = rounded ? "rounded-full" : "rounded-sm";
+  const baseClassName = cn(
     "inline-flex justify-center items-center gap-x-2 font-medium cursor-pointer disabled:cursor-not-allowed",
     variantStyles[variant],
     variant === "link" || variant === "default" ? "" : radius,
@@ -47,7 +51,8 @@ export function Button({
   );
 
   if (href) {
-    const isExternalUrl: boolean = href.startsWith("http://") || href.startsWith("https://");
+    const isExternalUrl: boolean =
+      href.startsWith("http://") || href.startsWith("https://");
     if (isExternalUrl) {
       return (
         <a
@@ -62,14 +67,22 @@ export function Button({
       );
     }
     return (
-      <Link className={baseClassName} href={href} {...(props as Omit<ComponentPropsWithoutRef<typeof Link>, "href">)}>
+      <Link
+        className={baseClassName}
+        href={href}
+        {...(props as Omit<ComponentPropsWithoutRef<typeof Link>, "href">)}
+      >
         {children}
       </Link>
     );
   }
 
   return (
-    <button type={type} className={baseClassName} {...(props as ComponentPropsWithoutRef<"button">)}>
+    <button
+      type={type}
+      className={baseClassName}
+      {...(props as ComponentPropsWithoutRef<"button">)}
+    >
       {children}
     </button>
   );

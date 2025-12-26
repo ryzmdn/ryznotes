@@ -1,13 +1,33 @@
 import { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: "License",
+  description:
+    "View the license information for RyzNotes. Learn about how this content and project is licensed.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "License - RyzNotes",
+    description: "View the license information for RyzNotes.",
+    url: `${SITE_URL}/license`,
+    type: "website",
+  },
+  alternates: {
+    canonical: "/license",
+  },
 };
 
 export default function License() {
   return (
     <>
-      <header id="header-license" className="bg-transparent px-6 py-16 sm:py-20 lg:px-8">
+      <header
+        id="header-license"
+        className="bg-transparent px-6 py-16 sm:py-20 lg:px-8"
+      >
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-4xl font-semibold tracking-tight capitalize text-gray-900 dark:text-gray-100 sm:text-5xl">
             License
@@ -23,11 +43,11 @@ export default function License() {
           <p>
             Permission is hereby granted, free of charge, to any person
             obtaining a copy of this software and associated documentation files
-            (the &quot;Software&quot;), to deal in the Software without restriction,
-            including without limitation the rights to use, copy, modify, merge,
-            publish, distribute, sublicense, and/or sell copies of the Software,
-            and to permit persons to whom the Software is furnished to do so,
-            subject to the following conditions:
+            (the &quot;Software&quot;), to deal in the Software without
+            restriction, including without limitation the rights to use, copy,
+            modify, merge, publish, distribute, sublicense, and/or sell copies
+            of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:
           </p>
 
           <p>
@@ -36,9 +56,9 @@ export default function License() {
           </p>
 
           <p>
-            THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
-            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+            THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY
+            KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
             NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
             BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
             ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
@@ -48,8 +68,12 @@ export default function License() {
         </section>
 
         <section id="license-explanation">
-          <h3 className="text-lg/7 text-gray-900 dark:text-gray-100 font-medium mb-2">What This License Means</h3>
-          <h4 className="text-base/7 text-gray-800 dark:text-gray-200 font-medium my-2">For Users</h4>
+          <h3 className="text-lg/7 text-gray-900 dark:text-gray-100 font-medium mb-2">
+            What This License Means
+          </h3>
+          <h4 className="text-base/7 text-gray-800 dark:text-gray-200 font-medium my-2">
+            For Users
+          </h4>
           <ul className="list-disc pl-4 text-gray-700 dark:text-gray-300">
             <li>You can use the software freely</li>
             <li>You can modify the software</li>
@@ -58,7 +82,9 @@ export default function License() {
             <li>You can sell copies of the software</li>
           </ul>
 
-          <h4 className="text-base/7 text-gray-800 dark:text-gray-200 font-medium my-2">Key Restrictions</h4>
+          <h4 className="text-base/7 text-gray-800 dark:text-gray-200 font-medium my-2">
+            Key Restrictions
+          </h4>
           <ul className="list-disc pl-4 text-gray-700 dark:text-gray-300">
             <li>Must include the original copyright notice</li>
             <li>No warranty is provided</li>

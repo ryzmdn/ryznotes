@@ -5,8 +5,29 @@ import { Button } from "@/components/common/Button";
 import { Category } from "@/types/wordpress";
 import { Svg } from "@/components/common/Svg";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Blog Collections",
+  title: "Collections",
+  description:
+    "Explore organized collections of articles and tutorials on RyzNotes. Browse curated categories covering web development, programming, JavaScript, React, Next.js, and more.",
+  keywords: [
+    "blog collections",
+    "categories",
+    "programming tutorials",
+    "web development",
+    "organized content",
+  ],
+  openGraph: {
+    title: "Collections - RyzNotes",
+    description:
+      "Browse curated collections of programming and web development articles.",
+    url: `${SITE_URL}/collections`,
+    type: "website",
+  },
+  alternates: {
+    canonical: "/collections",
+  },
 };
 
 async function getPosts(): Promise<Category[]> {

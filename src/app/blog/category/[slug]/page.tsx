@@ -4,9 +4,33 @@ import { Pagination } from "@/components/ui/Pagination";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { Category, Post } from "@/types/wordpress";
 
-export const metadata: Metadata = {
-  title: "Blogs",
-};
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; page?: string }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+  const categoryName =
+    slug.charAt(0).toUpperCase() + slug.slice(1).replace("-", " ");
+
+  return {
+    title: `${categoryName} - Blog Posts`,
+    description: `Explore all ${categoryName} articles and posts on RyzNotes. Discover in-depth content about ${slug} for developers and technology enthusiasts.`,
+    keywords: [slug, "blog posts", "articles", "technology", "programming"],
+    openGraph: {
+      title: `${categoryName} - RyzNotes Blog`,
+      description: `Explore ${categoryName} articles on RyzNotes`,
+      url: `${SITE_URL}/blog/category/${slug}`,
+      type: "website",
+    },
+    alternates: {
+      canonical: `/blog/category/${slug}`,
+    },
+  };
+}
 
 const POSTS_PER_PAGE: number = 12;
 

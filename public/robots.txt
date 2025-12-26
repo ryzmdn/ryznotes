@@ -1,0 +1,41 @@
+# RyzNotes - SEO Robots Configuration
+# Allow search engine crawlers to index the website
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /private/
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+Request-rate: 10/1s
+
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+Request-rate: 10/1s
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://ryznotes.dev/sitemap.xml

@@ -1,7 +1,6 @@
 import { Time } from "@/components/common/Time";
 import { Button } from "@/components/common/Button";
-import { formatDate } from "@/utils/fotmatDate";
-import { convertEncode } from "@/utils/encode";
+import { formatDate, decodeHtmlEntities } from "@/lib/utils";
 import { Post } from "@/types/wordpress";
 
 interface Props {
@@ -42,7 +41,7 @@ export function FeaturedBlogCard({ content }: Readonly<{ content: Post[] }>) {
           className="font-semibold line-clamp-2 py-1"
         >
           <span className="absolute inset-0" />
-          {convertEncode(content[0].title.rendered)}
+          {decodeHtmlEntities(content[0].title.rendered)}
         </Button>
       </h3>
       <div
@@ -99,7 +98,7 @@ export function BlogCard({
             className="font-semibold line-clamp-2"
           >
             <span className="absolute inset-0" />
-            {convertEncode(title)}
+            {decodeHtmlEntities(title)}
           </Button>
         </h3>
         <div

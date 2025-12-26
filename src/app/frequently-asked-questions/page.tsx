@@ -1,8 +1,23 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/common/Button";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Frequently Asked Question",
+  title: "FAQ",
+  description:
+    "Find answers to frequently asked questions about RyzNotes - a personal blog about web development, programming, and technology by Rizky Ramadhan.",
+  keywords: ["FAQ", "frequently asked questions", "help", "support"],
+  openGraph: {
+    title: "Frequently Asked Questions - RyzNotes",
+    description:
+      "Get answers to common questions about RyzNotes and its content.",
+    url: `${SITE_URL}/frequently-asked-questions`,
+    type: "website",
+  },
+  alternates: {
+    canonical: "/frequently-asked-questions",
+  },
 };
 
 interface FAQItem {
@@ -13,39 +28,48 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "What is RyzNote?",
-    answer: "RyzNote is a personal blog containing notes, tutorials, and opinions about web development, technology, and other interesting topics."
+    answer:
+      "RyzNote is a personal blog containing notes, tutorials, and opinions about web development, technology, and other interesting topics.",
   },
   {
     question: "What technologies are used in the making of RyzNote?",
-    answer: "RyzNote is built using WordPress as the CMS, and article data is fetched via the WordPress REST API. The frontend is built with Next.js, Tailwind CSS and TypeScript."
+    answer:
+      "RyzNote is built using WordPress as the CMS, and article data is fetched via the WordPress REST API. The frontend is built with Next.js, Tailwind CSS and TypeScript.",
   },
   {
     question: "How to search for articles in RyzNote?",
-    answer: "You can use the search feature available at the top of the page. Just enter the keyword you want to search for."
+    answer:
+      "You can use the search feature available at the top of the page. Just enter the keyword you want to search for.",
   },
   {
     question: "Can I leave a comment on RyzNote articles?",
-    answer: "This feature is under development. You cannot comment on existing articles yet.",
+    answer:
+      "This feature is under development. You cannot comment on existing articles yet.",
   },
   {
     question: "How to subscribe to the latest articles from RyzNote?",
-    answer: "This feature is under development. You will be able to subscribe via email by entering your email address in the subscription form available above the footer."
+    answer:
+      "This feature is under development. You will be able to subscribe via email by entering your email address in the subscription form available above the footer.",
   },
   {
     question: "Does RyzNote have specific article categories?",
-    answer: "Yes, RyzNote has several categories such as Web Development, Technology, Tutorials, and Opinions. You can see the list of categories in the navigation menu or the main part of the page and the web footer section which contains 5 popular categories."
+    answer:
+      "Yes, RyzNote has several categories such as Web Development, Technology, Tutorials, and Opinions. You can see the list of categories in the navigation menu or the main part of the page and the web footer section which contains 5 popular categories.",
   },
   {
     question: "How to contact RyzNote authors?",
-    answer: "You can contact the author via the Contact page available in the navigation menu or via social media listed in the footer and you can also see it on the about page."
+    answer:
+      "You can contact the author via the Contact page available in the navigation menu or via social media listed in the footer and you can also see it on the about page.",
   },
   {
     question: "Does RyzNote have a mobile version?",
-    answer: "Of course, RyzNote is designed to be responsive and accessible on a variety of devices, including smartphones and tablets."
+    answer:
+      "Of course, RyzNote is designed to be responsive and accessible on a variety of devices, including smartphones and tablets.",
   },
   {
     question: "Is the content on RyzNote shareable?",
-    answer: "Of course, you are allowed to share the content on RyzNote by citing the original source if you share the content."
+    answer:
+      "Of course, you are allowed to share the content on RyzNote by citing the original source if you share the content.",
   },
 ];
 
@@ -58,10 +82,7 @@ export default function Faqs() {
       <p className="mt-6 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
         Have a different question and can’t find the answer you’re looking for?
         Reach out to our support team by{" "}
-        <Button
-          variant="link"
-          href="mailto:riybuzniz@gmail.com"
-        >
+        <Button variant="link" href="mailto:riybuzniz@gmail.com">
           sending us an email
         </Button>{" "}
         and we’ll get back to you as soon as we can.
@@ -77,7 +98,9 @@ export default function Faqs() {
               {faq.question}
             </dt>
             <dd className="mt-4 lg:col-span-7 lg:mt-0">
-              <p className="text-base/7 text-gray-700 dark:text-gray-300">{faq.answer}</p>
+              <p className="text-base/7 text-gray-700 dark:text-gray-300">
+                {faq.answer}
+              </p>
             </dd>
           </div>
         ))}
